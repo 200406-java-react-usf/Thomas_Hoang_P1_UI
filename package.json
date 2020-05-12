@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Project 1 UI",
   "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -15,8 +19,12 @@
   "bugs": {
     "url": "https://github.com/200406-java-react-usf/Thomas_Hoang_P1_UI/issues"
   },
+<<<<<<< HEAD
   "homepage": "https://github.com/200406-java-react-usf/Thomas_Hoang_P1_UI#readme",
   "devDependencies": {
     "typescript": "^3.8.3"
   }
+=======
+  "homepage": "https://github.com/200406-java-react-usf/Thomas_Hoang_P1_UI#readme"
+>>>>>>> bff652cda4e9e182a563670df8405ac18cb905de
 }
