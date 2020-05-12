@@ -1,6 +1,6 @@
 import { AppModule } from "./util/app-module.js";
 
-export const API_URL = 'ThomasHoangP1-env-1.eba-hktpj2wz.us-east-2.elasticbeanstalk.com'
+export const API_URL = 'http://revaboardsapi-env-1.eba-53denqsk.us-east-1.elasticbeanstalk.com'
 
 window.onload = () => {
     console.log('page loaded.');
