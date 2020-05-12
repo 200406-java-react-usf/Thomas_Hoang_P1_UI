@@ -1,7 +1,7 @@
 import { View } from "./view.js";
 import { AuthService } from "../services/auth-service.js";
-import { Router } from "../util/router.js";
-import { state } from "../util/state.js";
+import { Router } from "../src/util/router.js.js";
+import { state } from "../src/util/state.js.js";
 
 export class LoginComponent implements View {
 

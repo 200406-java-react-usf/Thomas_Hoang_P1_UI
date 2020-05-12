@@ -1,5 +1,5 @@
 import { View } from "./view.js";
-import { state } from "../util/state.js";
+import { state } from "../src/util/state.js.js";
 
 export class DashboardComponent implements View {
 
