@@ -1,9 +1,9 @@
 import { Router } from "./router.js";
-import { LoginComponent } from "../components/login-component.js";
+import { LoginComponent } from "../src/components/login-component.js";
 import { Route } from "./route.js";
-import { AuthService } from "../services/auth-service.js";
-import { RegisterComponent } from "../components/register-component.js";
-import { DashboardComponent } from "../components/dashboard-component.js";
+import { AuthService } from "../src/services/auth-service.js";
+import { RegisterComponent } from "../src/components/register-component.js";
+import { DashboardComponent } from "../src/components/dashboard-component.js";
 
 // Poor-man's Dependency Injection
 export class AppModule {

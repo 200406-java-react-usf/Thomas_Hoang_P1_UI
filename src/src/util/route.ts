@@ -1,4 +1,4 @@
-import { View } from "../components/view.js";
+import { View } from "../src/components/view.js";
 
 export class Route {
 

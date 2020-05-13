@@ -1,4 +1,4 @@
-import { AppModule } from "./util/app-module.js";
+import { AppModule } from "./src/src/util/app-module.js";
 
 export const API_URL = 'http://revaboardsapi-env-1.eba-53denqsk.us-east-1.elasticbeanstalk.com'
 
