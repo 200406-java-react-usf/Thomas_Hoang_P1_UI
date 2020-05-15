@@ -13,7 +13,7 @@ phases:
       - npm run build
   post_build:
     commands:
-      - aws s3 sync ./build s3:http://mybuckettthoang.s3-website.us-east-2.amazonaws.com
+      - aws s3 sync ./build s3://mybuckettthoang
 # artifacts:
 #   base-directory: build
 #   files:
