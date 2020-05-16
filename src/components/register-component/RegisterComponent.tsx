@@ -64,7 +64,7 @@ const RegisterComponent = (props: IRegisterProps) => {
         props.authUser ? <Redirect to="/home" /> :
         <div className={classes.registerContainer}>
             <form className={classes.registerForm}>
-                <Typography align="center" variant="h4">Register for Revaboards!</Typography>
+                <Typography align="center" variant="h4">Add new User</Typography>
 
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="firstName">First Name</InputLabel>
@@ -72,7 +72,7 @@ const RegisterComponent = (props: IRegisterProps) => {
                         onChange={updateFormField} 
                         value={firstName} 
                         id="firstName" type="text" 
-                        placeholder="Enter your first name" />
+                        placeholder="Enter employee first name" />
                 </FormControl>
 
                 <FormControl margin="normal" fullWidth>
@@ -81,7 +81,7 @@ const RegisterComponent = (props: IRegisterProps) => {
                         onChange={updateFormField} 
                         value={lastName} 
                         id="lastName" type="text" 
-                        placeholder="Enter your last name" />
+                        placeholder="Enter employee last name" />
                 </FormControl>
 
                 <FormControl margin="normal" fullWidth>
@@ -90,7 +90,7 @@ const RegisterComponent = (props: IRegisterProps) => {
                         onChange={updateFormField} 
                         value={email} 
                         id="email" type="text" 
-                        placeholder="Enter your email address" />
+                        placeholder="Enter employee email address" />
                 </FormControl>
 
                 <FormControl margin="normal" fullWidth>
@@ -99,7 +99,7 @@ const RegisterComponent = (props: IRegisterProps) => {
                         onChange={updateFormField} 
                         value={username} 
                         id="username" type="text" 
-                        placeholder="Enter your username" />
+                        placeholder="Enter employee username" />
                 </FormControl>
 
                 <FormControl margin="normal" fullWidth>
@@ -108,14 +108,14 @@ const RegisterComponent = (props: IRegisterProps) => {
                         onChange={updateFormField}
                         value={password}
                         id="password" type="password"
-                        placeholder="Enter your password"/>
+                        placeholder="Enter employee password"/>
                 </FormControl>
                 <br/><br/>
                 <Button 
                     onClick={signUp} 
                     variant="contained" 
                     color="primary" 
-                    size="medium">Register
+                    size="medium">Add New User
                 </Button>
                 <br/><br/>
                 {
