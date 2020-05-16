@@ -1,28 +1,28 @@
 import { User } from "../dtos/user";
-import { devboardsClient } from "./devboards-client";
+import { P1Client } from "./P1-client";
 import { NewUser } from "../dtos/new-user";
 
 export async function register(newUser: NewUser) {
-    let response = await devboardsClient.post('/users', newUser);
+    let response = await P1Client.post('/users', newUser);
     return await response.data;
 }
 
 export async function getUsers() {
-    return await devboardsClient.get('/users');
+    return await P1Client.get('/users');
 }
 
 export async function getUserById(id: number) {
-    return await devboardsClient.get(`/users/${id}`);
+    return await P1Client.get(`/users/${id}`);
 }
 
 export async function getUserByUniqueKey(key: string, value: string) {
-    return await devboardsClient.get(`/users?${key}=${value}`);
+    return await P1Client.get(`/users?${key}=${value}`);
 }
 
 export async function updateUser(updatedUser: User) {
-    return await devboardsClient.put('/users', updatedUser);
+    return await P1Client.put('/users', updatedUser);
 }
 
 export async function deleteUserById(id: number) {
-    return await devboardsClient.delete(`/users/${id}`);
+    return await P1Client.delete(`/users/${id}`);
 }

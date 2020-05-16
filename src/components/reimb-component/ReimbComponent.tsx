@@ -65,51 +65,11 @@ const ReimbComponent = (props: IReimbProps) => {
         <div className={classes.registerContainer}>
             <form className={classes.registerForm}>
                 <Typography align="center" variant="h4">All Reimbursements</Typography>
-
-                <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="firstName">First Name</InputLabel>
-                    <Input 
-                        onChange={updateFormField} 
-                        value={firstName} 
-                        id="firstName" type="text" 
-                        placeholder="Enter your first name" />
-                </FormControl>
-
-                <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="lastName">Last Name</InputLabel>
-                    <Input 
-                        onChange={updateFormField} 
-                        value={lastName} 
-                        id="lastName" type="text" 
-                        placeholder="Enter your last name" />
-                </FormControl>
-
-                <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="email">Email Address</InputLabel>
-                    <Input 
-                        onChange={updateFormField} 
-                        value={email} 
-                        id="email" type="text" 
-                        placeholder="Enter your email address" />
-                </FormControl>
-
-                <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="username">Username</InputLabel>
-                    <Input 
-                        onChange={updateFormField} 
-                        value={username} 
-                        id="username" type="text" 
-                        placeholder="Enter your username" />
-                </FormControl>
-
-                <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="password">Password</InputLabel>
-                    <Input 
-                        onChange={updateFormField}
-                        value={password}
-                        id="password" type="password"
-                        placeholder="Enter your password"/>
-                </FormControl>
+                <ol>
+                    array.forEach(element => {
+                        
+                    });
+                </ol>
                 <br/><br/>
                 <Button 
                     onClick={signUp} 
