@@ -1,22 +1,22 @@
 export class NewUser {
 
-    firstName: string;
-    lastName: string;
-    email: string;
     username: string;
     password: string;
+    first_name: string;
+    last_name: string;
+    email: string;
     
     constructor(
-        fn: string, 
-        ln: string, 
-        email: string,
-        un: string,
-        pw: string) 
+        username: string, 
+        password: string, 
+        first_name: string,
+        last_name: string,
+        email: string) 
     {
-        this.firstName = fn;
-        this.lastName = ln;
+        this.username = username;
+        this.password = password;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.email = email;
-        this.username = un;
-        this.password = pw;
     }
 }

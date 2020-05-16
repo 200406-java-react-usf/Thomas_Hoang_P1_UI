@@ -7,6 +7,7 @@ import HomeComponent from './components/home-component/HomeContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import NavbarComponent from './components/navbar-component/NavbarContainer';
 import RegisterComponent from './components/register-component/RegisterContainer';
+import ReimbComponent from './components/reimb-component/ReimbContainer';
 
 import { Provider } from 'react-redux';
 import { store } from './Store';
@@ -28,6 +29,7 @@ function App() {
             <Route path='/home' render={() => <HomeComponent />} />
             <Route path='/login' render={() => <LoginComponent />} />
             <Route path='/register' render={() => <RegisterComponent />} />
+            <Route path='/reimb' render={() => <ReimbComponent />} />
           </Switch>
         </Router>
       </Provider>

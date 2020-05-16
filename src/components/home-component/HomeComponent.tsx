@@ -8,10 +8,12 @@ interface IHomeProps {
 const HomeComponent = (props: IHomeProps) => {
 
     return (
-        !props.username ? <Redirect to="/login" /> :
-        <h1>
-            Welcome, {props.username}!
-        </h1>
+        <>
+            !props.username ? <Redirect to="/login" /> :
+            <h1>
+                Welcome, {props.username}!
+            </h1>
+        </>
     );
 
 }
