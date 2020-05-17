@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Typography, FormControl, InputLabel, Input, Button, makeStyles } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { Alert } from '@material-ui/lab';
-import { NewReimb } from '../../dtos/new-reimb';
-import { User } from '../../dtos/user';
+import { NewReimb } from '../src/dtos/new-reimb';
+import { User } from '../src/dtos/user';
 
 interface IReimbProps {
     authUser: User;

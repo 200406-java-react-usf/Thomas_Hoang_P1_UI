@@ -1,7 +1,7 @@
 import { IState } from "../../reducers";
-import CreateUserComponent from "./CreateUserComponent";
+import RegisterComponent from "./RegisterComponent";
 import { connect } from "react-redux";
-import { createUserAction } from '../../actions/CreateUser-action';
+import { registerAction } from '../../actions/register-action';
 
 const mapStateToProps = (state: IState) => {
     return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state: IState) => {
 }
 
 const mapDispatchToProps = {
-    createUserAction
+    registerAction
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(CreateUserComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(RegisterComponent);

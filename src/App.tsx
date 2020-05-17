@@ -6,8 +6,7 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import HomeComponent from './components/home-component/HomeContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import NavbarComponent from './components/navbar-component/NavbarContainer';
-import CreateUserComponent from './components/create-user-component/CreateUserContainer';
-import CreateReimbComponent from './components/create-reimb-component/CreateReimbContainer';
+import RegisterComponent from './components/register-component/RegisterContainer';
 
 import { Provider } from 'react-redux';
 import { store } from './Store';
@@ -28,8 +27,7 @@ function App() {
           <Switch>
             <Route path='/home' render={() => <HomeComponent />} />
             <Route path='/login' render={() => <LoginComponent />} />
-            <Route path='/register' render={() => <CreateUserComponent />} />
-            <Route path='/reimb' render={() => <CreateReimbComponent />} />
+            <Route path='/register' render={() => <RegisterComponent />} />
           </Switch>
         </Router>
       </Provider>

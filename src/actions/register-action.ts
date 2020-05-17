@@ -1,21 +1,21 @@
 import { NewUser } from "../dtos/new-user"
 import { Dispatch } from "redux"
-import { createUser } from "../remote/user-service"
+import { register } from "../remote/user-service"
 import { loginActionTypes } from "./login-action"
 
-export const createUserActionTypes = {
-    SUCCESSFUL_NEW_USER: 'SUCCESSFUL_NEW_USER',
-    BAD_REQUEST: 'BAD_REQUEST',
-    INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR'
+export const registerActionTypes = {
+    SUCCESSFUL_REGISTRATION: 'DEVBOARDS_SUCCESSFUL_REGISTRATION',
+    BAD_REQUEST: 'DEVBOARDS_BAD_REQUEST',
+    INTERNAL_SERVER_ERROR: 'DEVBOARDS_INTERNAL_SERVER_ERROR'
 }
 
-export const createUserAction = (newUser: NewUser) => async (dispatch: Dispatch) => {
+export const registerAction = (newUser: NewUser) => async (dispatch: Dispatch) => {
 
     try {
 
-        let registeredUser = await createUser(newUser);
+        let registeredUser = await register(newUser);
         dispatch({
-            type: createUserActionTypes.SUCCESSFUL_NEW_USER,
+            type: registerActionTypes.SUCCESSFUL_REGISTRATION,
             payload: registeredUser
         });
         
@@ -29,12 +29,12 @@ export const createUserAction = (newUser: NewUser) => async (dispatch: Dispatch)
         let status = e.response.data.statusCode;
         if (status === 400) {
             dispatch({
-                type: createUserActionTypes.BAD_REQUEST,
+                type: registerActionTypes.BAD_REQUEST,
                 payload: e.response.data.message
             });
         } else {
             dispatch({
-                type: createUserActionTypes.INTERNAL_SERVER_ERROR,
+                type: registerActionTypes.INTERNAL_SERVER_ERROR,
                 payload: e.response.data.message || 'Uh oh! We could not reach the server!'
             });
         }
