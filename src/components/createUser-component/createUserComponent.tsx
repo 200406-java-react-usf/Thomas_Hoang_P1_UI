@@ -131,4 +131,4 @@ const createUserComponent = (props: IRegisterProps) => {
 
 }
 
-export default RegisterComponent;
+export default createUserComponent;

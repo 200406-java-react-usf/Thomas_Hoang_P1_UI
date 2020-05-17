@@ -9,7 +9,7 @@ export const createUserActionTypes = {
     INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR'
 }
 
-export const registerAction = (newUser: NewUser) => async (dispatch: Dispatch) => {
+export const createUserAction = (newUser: NewUser) => async (dispatch: Dispatch) => {
 
     try {
 

@@ -29,7 +29,7 @@ function App() {
             <Route path='/home' render={() => <HomeComponent />} />
             <Route path='/login' render={() => <LoginComponent />} />
             <Route path='/register' render={() => <RegisterComponent />} />
-            <Route path='/reimb' render={() => <ReimbComponent />} />
+            <Route path='/reimb' render={() => <newReimbComponent />} />
           </Switch>
         </Router>
       </Provider>

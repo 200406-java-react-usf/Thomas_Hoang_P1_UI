@@ -1,7 +1,7 @@
 import { User } from "../dtos/user"
 import { AnyAction } from "redux"
 import { loginActionTypes } from "../actions/login-action"
-import { registerActionTypes } from "../actions/register-action"
+import { createUserActionTypes } from "../actions/createUser-action"
 import { IRegisterState } from "."
 
 const initialState: IRegisterState = {
@@ -13,14 +13,14 @@ const initialState: IRegisterState = {
 export const registerReducer = (state: IRegisterState = initialState, action: AnyAction) => {
 
     switch (action.type) {
-        case registerActionTypes.SUCCESSFUL_REGISTRATION:
+        case createUserActionTypes.SUCCESSFUL_NEW_USER:
             return {
                 ...state,
                 authUser: action.payload
             }
 
-        case registerActionTypes.BAD_REQUEST:
-        case registerActionTypes.INTERNAL_SERVER_ERROR:
+        case createUserActionTypes.BAD_REQUEST:
+        case createUserActionTypes.INTERNAL_SERVER_ERROR:
             return {
                 ...state,
                 errorMessage: action.payload
