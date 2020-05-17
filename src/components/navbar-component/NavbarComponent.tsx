@@ -5,6 +5,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import TypoGraphy from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
+import { P1Client } from '../../remote/P1-client';
 
 interface INavbarProps {
     username: string;
@@ -20,6 +21,14 @@ const useStyles = makeStyles({
 const NavbarComponent = (props: INavbarProps) => {
 
     const classes = useStyles();
+
+    async function logout(){
+
+        await P1Client.get('/auth');
+        //@ts-ignore
+        props.setAuthUser(null as User);
+    
+    }
 
     return (
         <div>
@@ -46,6 +55,11 @@ const NavbarComponent = (props: INavbarProps) => {
                             <Link to='/newreimb' className={classes.link}>Reimbursements</Link>
                         </TypoGraphy>
                     </ListItemText>
+                    <ListItemText inset>
+                        <TypoGraphy color = "inherit" variant = "h6">
+                            <Link to = '' onClick = {logout} className = {classes.link}>Logout</Link>
+                        </TypoGraphy>
+                    </ListItemText> 
                     <ListItemText inset>
                         <TypoGraphy color="inherit" variant="h6">
                             {props.username}
