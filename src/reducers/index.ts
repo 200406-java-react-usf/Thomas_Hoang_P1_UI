@@ -1,23 +1,23 @@
 import { User } from "../dtos/user";
 import { combineReducers } from "redux";
 import { loginReducer } from "./login-reducer";
-import { registerReducer } from "./CreateUser-reducer";
+import { createUserReducer } from "./CreateUser-reducer";
 
 export interface ILoginState {
     authUser: User;
     errorMessage: string;
 }
 
-export interface IRegisterState {
+export interface ICreateUserState {
     errorMessage: string;
 }
 
 export interface IState {
     login: ILoginState;
-    register: IRegisterState;
+    register: ICreateUserState;
 }
 
 export const state = combineReducers<IState>({
     login: loginReducer,
-    register: registerReducer
+    register: createUserReducer
 });

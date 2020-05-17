@@ -1,7 +1,7 @@
 import { IState } from "../../reducers";
 import CreateReimbComponent from "./CreateReimbComponent";
 import { connect } from "react-redux";
-import { createReimbAction } from '../../actions/createReimb-action';
+import { createReimbAction } from '../../actions/CreateReimb-action';
 
 const mapStateToProps = (state: IState) => {
     return {

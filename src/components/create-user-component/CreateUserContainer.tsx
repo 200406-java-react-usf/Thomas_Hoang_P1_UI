@@ -1,7 +1,7 @@
 import { IState } from "../../reducers";
 import CreateUserComponent from "./CreateUserComponent";
 import { connect } from "react-redux";
-import { createUserAction } from '../../actions/createUser-action';
+import { createUserAction } from '../../actions/CreateUser-action';
 
 const mapStateToProps = (state: IState) => {
     return {
