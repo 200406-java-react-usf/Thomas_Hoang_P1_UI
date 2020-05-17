@@ -12,6 +12,10 @@ export interface ICreateUserState {
     errorMessage: string;
 }
 
+export interface ICreateReimbState {
+    errorMessage: string;
+}
+
 export interface IState {
     login: ILoginState;
     register: ICreateUserState;
