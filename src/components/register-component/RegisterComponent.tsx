@@ -5,10 +5,10 @@ import { Alert } from '@material-ui/lab';
 import { NewUser } from '../../dtos/new-user';
 import { User } from '../../dtos/user';
 
-interface IRegisterProps {
+interface ICreateUserProps {
     authUser: User;
     errorMessage: string;
-    registerAction: (newUser: NewUser) => void;
+    CreateUserAction: (newUser: NewUser) => void;
 }
 
 const useStyles = makeStyles({
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     }
 });
 
-const RegisterComponent = (props: IRegisterProps) => {
+const CreateUserComponent = (props: ICreateUserProps) => {
 
     const classes = useStyles();
 
@@ -57,7 +57,7 @@ const RegisterComponent = (props: IRegisterProps) => {
     }
 
     let signUp = async () => {
-        props.registerAction(new NewUser(firstName, lastName, email, username, password));
+        props.CreateUserAction(new NewUser(firstName, lastName, email, username, password));
     }
 
     return (
@@ -131,4 +131,4 @@ const RegisterComponent = (props: IRegisterProps) => {
 
 }
 
-export default RegisterComponent;
+export default CreateUserComponent;

@@ -53,7 +53,7 @@ const LoginComponent = (props: ILoginProps) => {
         props.authUser ? <Redirect to="/home" /> :
         <div className={classes.loginContainer}>
             <form className={classes.loginForm}>
-                <Typography align="center" variant="h4">Login into Revaboards!</Typography>
+                <Typography align="center" variant="h4">Login into P1!</Typography>
 
                 <FormControl margin="normal" fullWidth>
                     <InputLabel htmlFor="username">Username</InputLabel>

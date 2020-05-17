@@ -25,7 +25,7 @@ const NavbarComponent = (props: INavbarProps) => {
         <div>
             <List component="nav">
                 <ListItem component="div" >
-                    <TypoGraphy color="inherit" variant="h5">Devboards</TypoGraphy>
+                    <TypoGraphy color="inherit" variant="h5">Thomas Hoang</TypoGraphy>
                     <ListItemText inset>
                         <TypoGraphy color="inherit" variant="h6">
                             <Link to='/home' className={classes.link}>Home</Link>
