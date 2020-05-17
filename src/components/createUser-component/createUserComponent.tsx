@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     }
 });
 
-const RegisterComponent = (props: IRegisterProps) => {
+const createUserComponent = (props: IRegisterProps) => {
 
     const classes = useStyles();
 
