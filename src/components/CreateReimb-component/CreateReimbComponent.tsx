@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { Typography, FormControl, InputLabel, Input, Button, makeStyles } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { Alert } from '@material-ui/lab';
-import { NewReimb } from '../src/dtos/new-reimb';
-import { User } from '../src/dtos/user';
+import { NewReimb } from '../../dtos/new-reimb';
+import { User } from '../../dtos/user';
 
 interface IReimbProps {
     authUser: User;
     errorMessage: string;
-    createReimbAction: (newReimb: NewReimb) => void;
+    CreateReimbAction: (newReimb: NewReimb) => void;
 }
 
 const useStyles = makeStyles({
@@ -53,7 +53,7 @@ const CreateReimbComponent = (props: IReimbProps) => {
     }
 
     let createReimb = async () => {
-        props.createReimbAction(new NewReimb(152.25, '2020-04-15 18:50:10', 'A reimbursement for lodging', 'RandomURLLink','Bill', 'Bob', 'Lodging'));
+        props.CreateReimbAction(new NewReimb(152.25, '2020-04-15 18:50:10', 'A reimbursement for lodging', 'RandomURLLink','Bill', 'Bob', 'Lodging'));
     }
 
     return (

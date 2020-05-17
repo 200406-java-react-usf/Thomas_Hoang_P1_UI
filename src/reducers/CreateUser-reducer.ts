@@ -1,7 +1,7 @@
 import { User } from "../dtos/user"
 import { AnyAction } from "redux"
 import { loginActionTypes } from "../actions/login-action"
-import { CreateUserActionTypes } from "../actions/register-action"
+import { CreateUserActionTypes } from "../actions/CreateUser-action"
 import { ICreateUserState } from "."
 
 const initialState: ICreateUserState = {
