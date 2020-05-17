@@ -8,7 +8,7 @@ import { User } from '../../dtos/user';
 interface IRegisterProps {
     authUser: User;
     errorMessage: string;
-    registerAction: (newUser: NewUser) => void;
+    createUserAction: (newUser: NewUser) => void;
 }
 
 const useStyles = makeStyles({
@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     }
 });
 
-const createUserComponent = (props: IRegisterProps) => {
+const CreateUserComponent = (props: IRegisterProps) => {
 
     const classes = useStyles();
 
@@ -57,7 +57,7 @@ const createUserComponent = (props: IRegisterProps) => {
     }
 
     let signUp = async () => {
-        props.registerAction(new NewUser(firstName, lastName, email, username, password));
+        props.createUserAction(new NewUser(firstName, lastName, email, username, password));
     }
 
     return (
@@ -131,4 +131,4 @@ const createUserComponent = (props: IRegisterProps) => {
 
 }
 
-export default createUserComponent;
+export default CreateUserComponent;

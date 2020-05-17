@@ -24,7 +24,7 @@ const useStyles = makeStyles({
     }
 });
 
-const ReimbComponent = (props: IReimbProps) => {
+const CreateReimbComponent = (props: IReimbProps) => {
 
     const classes = useStyles();
 
@@ -66,9 +66,9 @@ const ReimbComponent = (props: IReimbProps) => {
             <form className={classes.registerForm}>
                 <Typography align="center" variant="h4">All Reimbursements</Typography>
                 <ol>
-                    array.forEach(element => {
+                    {/* array.forEach(element => {
                         
-                    });
+                    }); */}
                 </ol>
                 <br/><br/>
                 <Button 
@@ -91,4 +91,4 @@ const ReimbComponent = (props: IReimbProps) => {
 
 }
 
-export default ReimbComponent;
+export default CreateReimbComponent;

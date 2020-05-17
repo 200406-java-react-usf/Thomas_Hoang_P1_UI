@@ -1,7 +1,7 @@
 import { IState } from "../../reducers";
-import createUserComponent from "./createUserComponent";
+import CreateReimbComponent from "./CreateReimbComponent";
 import { connect } from "react-redux";
-import { createUserAction } from '../../actions/createUser-action';
+import { createReimbAction } from '../../actions/createReimb-action';
 
 const mapStateToProps = (state: IState) => {
     return {
@@ -11,7 +11,7 @@ const mapStateToProps = (state: IState) => {
 }
 
 const mapDispatchToProps = {
-    createUserAction
+    createReimbAction
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(createUserComponent);
+export default connect(mapStateToProps, mapDispatchToProps)(CreateReimbComponent);

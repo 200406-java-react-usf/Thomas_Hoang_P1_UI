@@ -1,7 +1,7 @@
 import { User } from "../dtos/user";
 import { combineReducers } from "redux";
 import { loginReducer } from "./login-reducer";
-import { registerReducer } from "./createUser-reducer";
+import { registerReducer } from "./CreateUser-reducer";
 
 export interface ILoginState {
     authUser: User;
