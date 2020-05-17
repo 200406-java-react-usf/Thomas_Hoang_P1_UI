@@ -2,7 +2,7 @@ import { P1Client } from "./P1-client";
 import { NewReimb } from "../dtos/new-reimb";
 import { Reimbursement } from "../dtos/reimb";
 
-export async function register(newReimb: NewReimb) {
+export async function createReimb(newReimb: NewReimb) {
     let response = await P1Client.post('/reimb', newReimb);
     return await response.data;
 }

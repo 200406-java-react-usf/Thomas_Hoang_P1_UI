@@ -2,7 +2,7 @@ import { User } from "../dtos/user";
 import { P1Client } from "./P1-client";
 import { NewUser } from "../dtos/new-user";
 
-export async function register(newUser: NewUser) {
+export async function createUser(newUser: NewUser) {
     let response = await P1Client.post('/users', newUser);
     return await response.data;
 }

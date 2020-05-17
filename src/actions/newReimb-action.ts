@@ -1,27 +1,27 @@
-import { NewUser } from "../dtos/new-user"
+import { NewReimb } from "../dtos/new-reimb"
 import { Dispatch } from "redux"
-import { createUser } from "../remote/user-service"
+import { createReimb } from "../remote/reimb-service"
 import { loginActionTypes } from "./login-action"
 
-export const createUserActionTypes = {
-    SUCCESSFUL_NEW_USER: 'SUCCESSFUL_NEW_USER',
+export const createReimbActionTypes = {
+    SUCCESSFUL_REGISTRATION: 'SUCCESFUL_NEW_REIMBURSEMENT',
     BAD_REQUEST: 'BAD_REQUEST',
     INTERNAL_SERVER_ERROR: 'INTERNAL_SERVER_ERROR'
 }
 
-export const registerAction = (newUser: NewUser) => async (dispatch: Dispatch) => {
+export const createReimbAction = (newReimb: NewReimb) => async (dispatch: Dispatch) => {
 
     try {
 
-        let registeredUser = await createUser(newUser);
+        let createdReimbursement = await createReimb(newReimb);
         dispatch({
-            type: createUserActionTypes.SUCCESSFUL_NEW_USER,
-            payload: registeredUser
+            type: createReimbActionTypes.SUCCESSFUL_REGISTRATION,
+            payload: createdReimbursement
         });
         
         dispatch({
             type: loginActionTypes.SUCCESSFUL_LOGIN,
-            payload: registeredUser
+            payload: createdReimbursement
         });
 
     } catch (e) {
@@ -29,12 +29,12 @@ export const registerAction = (newUser: NewUser) => async (dispatch: Dispatch) =
         let status = e.response.data.statusCode;
         if (status === 400) {
             dispatch({
-                type: createUserActionTypes.BAD_REQUEST,
+                type: createReimbActionTypes.BAD_REQUEST,
                 payload: e.response.data.message
             });
         } else {
             dispatch({
-                type: createUserActionTypes.INTERNAL_SERVER_ERROR,
+                type: createReimbActionTypes.INTERNAL_SERVER_ERROR,
                 payload: e.response.data.message || 'Uh oh! We could not reach the server!'
             });
         }

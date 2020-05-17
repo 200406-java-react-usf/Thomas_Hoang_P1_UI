@@ -1,5 +1,5 @@
 import { IState } from "../../reducers";
-import RegisterComponent from "./RegisterComponent";
+import RegisterComponent from "./createUserComponent";
 import { connect } from "react-redux";
 import { registerAction } from '../../actions/register-action';
 

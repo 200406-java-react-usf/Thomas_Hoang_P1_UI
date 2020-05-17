@@ -6,8 +6,8 @@ import { AppBar, Toolbar, Typography } from '@material-ui/core';
 import HomeComponent from './components/home-component/HomeContainer';
 import LoginComponent from './components/login-component/LoginContainer';
 import NavbarComponent from './components/navbar-component/NavbarContainer';
-import RegisterComponent from './components/register-component/RegisterContainer';
-import ReimbComponent from './components/reimb-component/ReimbContainer';
+import RegisterComponent from './components/createUser-component/createUserContainer';
+import ReimbComponent from './components/newReimb-component/ReimbContainer';
 
 import { Provider } from 'react-redux';
 import { store } from './Store';

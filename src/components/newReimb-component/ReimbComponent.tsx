@@ -2,17 +2,17 @@ import React, { useState } from 'react';
 import { Typography, FormControl, InputLabel, Input, Button, makeStyles } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { Alert } from '@material-ui/lab';
-import { NewUser } from '../../dtos/new-user';
+import { NewReimb } from '../../dtos/new-reimb';
 import { User } from '../../dtos/user';
 
 interface IReimbProps {
     authUser: User;
     errorMessage: string;
-    registerAction: (newUser: NewUser) => void;
+    newReimbAction: (newReimb: NewReimb) => void;
 }
 
 const useStyles = makeStyles({
-    registerContainer: {
+    reimbContainer: {
         display: "flex",
         justifyContent: "center",
         margin: 20,
@@ -56,13 +56,13 @@ const ReimbComponent = (props: IReimbProps) => {
         }
     }
 
-    let signUp = async () => {
-        props.registerAction(new NewUser(firstName, lastName, email, username, password));
+    let createReimb = async () => {
+        props.newReimbAction(new NewReimb(1, 152.25, '2020-04-15 18:50:10', '2020-05-12 20:00:55', 'A reimbursement for lodging', 'RandomURLLink', 'Alice', 'Anderson', 'Bill', 'Bob', 'Denied', 'Lodging'));
     }
 
     return (
         props.authUser ? <Redirect to="/home" /> :
-        <div className={classes.registerContainer}>
+        <div className={classes.reimbContainer}>
             <form className={classes.registerForm}>
                 <Typography align="center" variant="h4">All Reimbursements</Typography>
                 <ol>
@@ -72,7 +72,7 @@ const ReimbComponent = (props: IReimbProps) => {
                 </ol>
                 <br/><br/>
                 <Button 
-                    onClick={signUp} 
+                    onClick={createReimb} 
                     variant="contained" 
                     color="primary" 
                     size="medium">Register
