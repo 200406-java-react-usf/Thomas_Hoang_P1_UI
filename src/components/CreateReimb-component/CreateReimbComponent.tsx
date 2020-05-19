@@ -57,7 +57,7 @@ const CreateReimbComponent = (props: IReimbProps) => {
     }
 
     return (
-        props.authUser ? <Redirect to="/home" /> :
+        !props.authUser ? <Redirect to="/home" /> :
         <div className={classes.reimbContainer}>
             <form className={classes.reimbForm}>
                 <Typography align="center" variant="h4">All Reimbursements</Typography>

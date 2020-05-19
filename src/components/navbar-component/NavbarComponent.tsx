@@ -6,8 +6,10 @@ import TypoGraphy from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import { P1Client } from '../../remote/P1-client';
+import { User } from '../../dtos/user';
 
 interface INavbarProps {
+    authUser: User;
     username: string;
 }
 
@@ -26,7 +28,7 @@ const NavbarComponent = (props: INavbarProps) => {
 
         await P1Client.get('/auth');
         //@ts-ignore
-        props.setAuthUser(null as User);
+        props.authUser(null as User);
     
     }
 
@@ -47,7 +49,7 @@ const NavbarComponent = (props: INavbarProps) => {
                     </ListItemText>
                     <ListItemText inset>
                         <TypoGraphy color="inherit" variant="h6">
-                            <Link to='/register' className={classes.link}>Register</Link>
+                            <Link to='/admin' className={classes.link}>Admin</Link>
                         </TypoGraphy>
                     </ListItemText>
                     <ListItemText inset>
