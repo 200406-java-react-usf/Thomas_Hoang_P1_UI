@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Typography, FormControl, InputLabel, Input, Button, makeStyles } from '@material-ui/core';
-import ReactDOM from 'react-dom';
+import { makeStyles } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { Alert } from '@material-ui/lab';
 import { User } from '../../dtos/user';
-import { NewUser } from '../../dtos/new-user';
-import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import { getUsers, updateUser, deleteUserById, register} from '../../remote/user-service';
 
@@ -37,7 +34,7 @@ const MainUserComponent = (props: IMainUserProps) => {
 
     useEffect(() => {
         getTableData();
-    });
+    }, []);
 
     const updateRow = async (updatedUser: User) =>{
         try{
@@ -45,6 +42,7 @@ const MainUserComponent = (props: IMainUserProps) => {
                 return <Alert severity="error">Please Enter a Password.</Alert>;
         }
             await updateUser(updatedUser);
+            await getTableData();
         }catch(e){
             setErrorMessage(e.response.data.reason)
         }
@@ -53,31 +51,33 @@ const MainUserComponent = (props: IMainUserProps) => {
     const deleteRow = async (id: number) =>{
         try{
             await deleteUserById(id);
+            await getTableData();
         }catch(e){
             setErrorMessage(e.response.data.reason)
         }
     }
 
-    const addNew = async (updatedUser: NewUser) =>{
+    const addNew = async (updatedUser: User) =>{
         try{
             await register(updatedUser);
+            await getTableData();
         }catch(e){
             setErrorMessage(e.response.data.reason)
         }
     }
 
-    /*Creates the base table and loads in the data needed for the trable*/
-    function renderTable(){
-        return(
+    return (
+        !props.authUser ? <Redirect to="/home" /> :
+        <div className = {classes.userTable}>
             <MaterialTable
             columns = {[
-                {title: 'User ID', field: 'ers_user_id'},
-                {title: 'Username', field: 'username'},
+                {title: 'User ID', field: 'ers_user_id', editable: 'never'},
+                {title: 'Username', field: 'username', editable: 'always'},
                 {title: 'Password', field: 'password'},
-                {title: 'First Name', field: 'first_name'},
-                {title: 'Last Name', field: 'last_name'},
+                {title: 'First Name', field: 'first_name', editable: 'onAdd'},
+                {title: 'Last Name', field: 'last_name', editable: 'onAdd'},
                 {title: 'Email', field: 'email'},
-                {title: 'Role', field: 'role_name'}
+                {title: 'Role', field: 'role_name', editable: 'onAdd'}
             ]}
             data = {users}
             title = "ERS Users"
@@ -98,11 +98,6 @@ const MainUserComponent = (props: IMainUserProps) => {
                 })
             }}
             />
-        )}
-    return (
-        (props.authUser.role_name === 'FManager') ? <Redirect to="/home" /> :
-        <div className = {classes.userTable}>
-            {renderTable}
                 {
                     props.errorMessage 
                         ? 

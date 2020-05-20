@@ -5,7 +5,6 @@ import ListItemText from '@material-ui/core/ListItemText';
 import TypoGraphy from '@material-ui/core/Typography'
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
-import { P1Client } from '../../remote/P1-client';
 import { User } from '../../dtos/user';
 import { invalidateSession } from '../../remote/auth-service'
 
@@ -27,7 +26,7 @@ const NavbarComponent = (props: INavbarProps) => {
 
     async function logout(){
 
-        await invalidateSession;
+        // await invalidateSession;
 
         //Need to make a logout action and reducer.
     }
@@ -35,7 +34,8 @@ const NavbarComponent = (props: INavbarProps) => {
     function checkRole(){
         if (!props.authUser){
             return;
-        }else if(props.authUser.role_name === "Admin"){
+            //@ts-ignore
+        }else if(props.authUser.role === "Admin"){
             return (
             <ListItemText inset>
                 <TypoGraphy color="inherit" variant="h6">
@@ -43,7 +43,7 @@ const NavbarComponent = (props: INavbarProps) => {
                 </TypoGraphy>
             </ListItemText>
             )
-        }else if (props.authUser.role_name === "FManager" || props.authUser.role_name === "Employee"){
+        }else if (props.authUser.role === "FManager" || props.authUser.role === "Employee"){
             return (
             <ListItemText inset>
                 <TypoGraphy color="inherit" variant="h6">

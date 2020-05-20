@@ -6,7 +6,7 @@ export class User {
     first_name: string;
     last_name: string;
     email: string;
-    role_name: string
+    role: string
 
     constructor(
         ers_user_id: number, 
@@ -23,6 +23,6 @@ export class User {
         this.first_name = first_name;
         this.last_name = last_name;
         this.email = email;
-        this.role_name = role_name;
+        this.role = role_name;
     }
 }

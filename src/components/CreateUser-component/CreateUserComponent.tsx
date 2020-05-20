@@ -28,11 +28,12 @@ const CreateUserComponent = (props: ICreateUserProps) => {
 
     const classes = useStyles();
 
-    const [firstName, setFirstName] = useState('');
-    const [lastName, setLastName] = useState('');
+    const [first_name, setFirstName] = useState('');
+    const [last_name, setLastName] = useState('');
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    // const [role_name, setRole] = useState('');
 
     let updateFormField = (e: any) => {
         switch (e.currentTarget.id) {
@@ -51,35 +52,39 @@ const CreateUserComponent = (props: ICreateUserProps) => {
             case 'password':
                 setPassword(e.currentTarget.value);
                 break;
+            // case 'role_name':
+            //     setRole(e.currentTarget.value);
+            //     break;
             default:
                 console.warn(`Improper binding detected on element with id: ${e.currentTarget.id}`);
         }
     }
 
     let signUp = async () => {
-        props.CreateUserAction(new NewUser(firstName, lastName, email, username, password));
+        props.CreateUserAction(new NewUser(first_name, last_name, email, username, password));
     }
 
     return (
-        (props.authUser.role_name !== "Admin") ? <Redirect to="/home"/> :
+        //@ts-ignore
+        (props.authUser.role !== "Admin") ? <Redirect to="/home"/> :
         <div className={classes.registerContainer}>
             <form className={classes.registerForm}>
                 <Typography align="center" variant="h4">Register for Revaboards!</Typography>
 
                 <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="firstName">First Name</InputLabel>
+                    <InputLabel htmlFor="first_name">First Name</InputLabel>
                     <Input 
                         onChange={updateFormField} 
-                        value={firstName} 
+                        value={first_name} 
                         id="firstName" type="text" 
                         placeholder="Enter your first name" />
                 </FormControl>
 
                 <FormControl margin="normal" fullWidth>
-                    <InputLabel htmlFor="lastName">Last Name</InputLabel>
+                    <InputLabel htmlFor="last_name">Last Name</InputLabel>
                     <Input 
                         onChange={updateFormField} 
-                        value={lastName} 
+                        value={last_name} 
                         id="lastName" type="text" 
                         placeholder="Enter your last name" />
                 </FormControl>
@@ -110,6 +115,16 @@ const CreateUserComponent = (props: ICreateUserProps) => {
                         id="password" type="password"
                         placeholder="Enter your password"/>
                 </FormControl>
+
+                
+                {/* <FormControl margin="normal" fullWidth>
+                    <InputLabel htmlFor="role_name">Role Name</InputLabel>
+                    <Input 
+                        onChange={updateFormField}
+                        value={role_name}
+                        id="role_name" type="text"
+                        placeholder="Enter role name."/>
+                </FormControl> */}
                 <br/><br/>
                 <Button 
                     onClick={signUp} 
