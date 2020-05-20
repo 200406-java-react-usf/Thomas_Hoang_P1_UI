@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Typography, FormControl, InputLabel, Input, Button, makeStyles } from '@material-ui/core';
 import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
@@ -6,7 +6,7 @@ import { Alert } from '@material-ui/lab';
 import { User } from '../../dtos/user';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
-import { getUsers } from '../../remote/user-service';
+import { getUsers, updateUser, deleteUserById, register} from '../../remote/user-service';
 
 interface IMainUserProps {
     authUser: User;
@@ -26,10 +26,52 @@ const useStyles = makeStyles({
 const MainUserComponent = (props: IMainUserProps) => {
 
     const classes = useStyles();
-    const [users, setTableData] = useState([new User(0, '', '', '', '', '', '', '', '')]);
-    async function getTableData(){
-        let users = await getUsers();
-        return users;
+    const [users, setTableData] = useState([new User(0, '', '', '', '', '', '')]);
+    const [errorMessage, setErrorMessage] = useState('');
+
+    let getTableData = async() =>{
+        let result = await getUsers();
+        setTableData(result);
+    }
+
+    useEffect(() => {
+        getTableData();
+    });
+
+    const updateUser = async (updatedUser: User) =>{
+        try{
+            if (!updatedUser.password){
+                return <Alert severity="error">Please Enter a Password.</Alert>;
+        }
+            await updateUser(updatedUser);
+        }
+        catch(e){
+            setErrorMessage(e.response.data.reason)
+        }
+    }
+
+    const deleteUser = async (id: number) =>{
+        try{
+            if (!updatedUser.password){
+                return <Alert severity="error">Please Enter a Password.</Alert>;
+        }
+            await deleteUserById(updatedUser);
+        }
+        catch(e){
+            setErrorMessage(e.response.data.reason)
+        }
+    }
+
+    const addNewUser = async (updatedUser: User) =>{
+        try{
+            if (!updatedUser.password){
+                return <Alert severity="error">Please Enter a Password.</Alert>;
+        }
+            await register(updatedUser);
+        }
+        catch(e){
+            setErrorMessage(e.response.data.reason)
+        }
     }
 
     /*Creates the base table and loads in the data needed for the trable*/
@@ -39,21 +81,35 @@ const MainUserComponent = (props: IMainUserProps) => {
             columns = {[
                 {title: 'User ID', field: 'ers_user_id'},
                 {title: 'Username', field: 'username'},
+                {title: 'Password', field: 'password'},
                 {title: 'First Name', field: 'first_name'},
                 {title: 'Last Name', field: 'last_name'},
                 {title: 'Email', field: 'email'},
-                {title: 'Role', field: 'role_name'},
+                {title: 'Role', field: 'role_name'}
             ]}
-            data = {getTableData}
+            data = {users}
             title = "ERS Users"
-            />
-        )
-    }
+            editable= {{
+               onRowAdd: newData =>
+               new Promise ((resolve,reject) => {
+                   resolve();
+
+    //            })
+    //         })
+    //         onRowUpdate:
+            
+    //     })
+    //     onRowDelete:
+    // })
+    //         }}
+    //         />
+    //     )
+    // }
 
     return (
         (props.authUser.role === 'Admin') ? <Redirect to="/home" /> :
         <div className = {classes.userTable}>
-
+            {renderTable}
                 {
                     props.errorMessage 
                         ? 

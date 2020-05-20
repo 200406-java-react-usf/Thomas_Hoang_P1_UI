@@ -8,15 +8,8 @@ export async function register(newUser: NewUser) {
 }
 
 export async function getUsers() {
-    return await P1Client.get('/users');
-}
-
-export async function getUserById(id: number) {
-    return await P1Client.get(`/users/${id}`);
-}
-
-export async function getUserByUniqueKey(key: string, value: string) {
-    return await P1Client.get(`/users?${key}=${value}`);
+    let response = await P1Client.get('/users')
+    return await response.data;
 }
 
 export async function updateUser(updatedUser: User) {
