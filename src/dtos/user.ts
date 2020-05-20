@@ -15,8 +15,6 @@ export class User {
         fn: string, 
         ln: string, 
         email: string,
-        registerDT: Date,
-        isActive: boolean, 
         role: string) 
     {
         this.id = id;
@@ -25,8 +23,6 @@ export class User {
         this.firstName = fn;
         this.lastName = ln;
         this.email = email;
-        this.registerDateTime = registerDT;
-        this.isActive = isActive;
         this.role = role;
     }
 }
