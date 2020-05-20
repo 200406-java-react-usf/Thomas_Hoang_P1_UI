@@ -6,8 +6,6 @@ export class User {
     firstName: string;
     lastName: string;
     email: string;
-    registerDateTime: Date;
-    isActive: boolean;
     role: string
 
     constructor(
