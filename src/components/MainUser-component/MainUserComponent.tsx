@@ -98,7 +98,7 @@ const MainUserComponent = (props: IMainUserProps) => {
                 })
             }}
             />
-            }
+        )}
     return (
         (props.authUser.role_name === 'FManager') ? <Redirect to="/home" /> :
         <div className = {classes.userTable}>
