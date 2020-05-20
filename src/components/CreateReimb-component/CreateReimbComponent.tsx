@@ -53,7 +53,7 @@ const CreateReimbComponent = (props: IReimbProps) => {
     }
 
     let createReimb = async () => {
-        props.CreateReimbAction(new NewReimb(152.25, '2020-04-15 18:50:10', 'A reimbursement for lodging', 'RandomURLLink','Bill', 'Bob', 'Lodging'));
+        props.CreateReimbAction(new NewReimb(+amount, description, receipt, reimb_type));
     }
 
     return (
