@@ -8,6 +8,7 @@ import LoginComponent from './components/login-component/LoginContainer';
 import NavbarComponent from './components/navbar-component/NavbarContainer';
 import CreateUserComponent from './components/CreateUser-component/CreateUserContainer';
 import CreateReimbComponent from './components/CreateReimb-component/CreateReimbContainer';
+import MainReimbComponent from './components/MainReimb-component/MainReimbContainer';
 
 import { Provider } from 'react-redux';
 import { store } from './Store';
@@ -29,7 +30,8 @@ function App() {
             <Route path='/home' render={() => <HomeComponent />} />
             <Route path='/login' render={() => <LoginComponent />} />
             <Route path='/register' render={() => <CreateUserComponent />} />
-            <Route path='/newreimb' render={() => <CreateReimbComponent />} />
+            <Route path='/reimb' render={() => <MainReimbComponent />} />
+            <Route path='/createReimb' render={() => <CreateReimbComponent />} />
           </Switch>
         </Router>
       </Provider>

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core';
 import { P1Client } from '../../remote/P1-client';
 import { User } from '../../dtos/user';
+import { invalidateSession } from '../../remote/auth-service'
 
 interface INavbarProps {
     authUser: User;
@@ -26,10 +27,52 @@ const NavbarComponent = (props: INavbarProps) => {
 
     async function logout(){
 
-        await P1Client.get('/auth');
+        await invalidateSession;
+
+        //Need to make a logout action and reducer.
+    }
+
+    function checkRole(){
+        if (!props.authUser){
+            return;
+        }else if(props.authUser.role === "Admin"){
+            return (
+            <ListItemText inset>
+                <TypoGraphy color="inherit" variant="h6">
+                    <Link to='/users' className={classes.link}>Users</Link>
+                </TypoGraphy>
+            </ListItemText>
+            )
+        }else if (props.authUser.role === "FManager" || props.authUser.role === "Employee"){
+            return (
+            <ListItemText inset>
+                <TypoGraphy color="inherit" variant="h6">
+                    <Link to='/reimb' className={classes.link}>Reimbursements</Link>
+                </TypoGraphy>
+            </ListItemText>
+            )
+        }
+    }
+
+    function checkLogin(username: string){
         //@ts-ignore
-        props.authUser(null as User);
-    
+        if(!username){
+            return(
+            <ListItemText inset>
+                <TypoGraphy color="inherit" variant="h6">
+                    <Link to='/login' className={classes.link}>Login</Link>
+                </TypoGraphy>
+            </ListItemText>
+            );
+        }else{
+            return(
+            <ListItemText inset>
+                <TypoGraphy color = "inherit" variant = "h6">
+                    <Link to = '' onClick = {logout} className = {classes.link}>Logout</Link>
+                </TypoGraphy>
+            </ListItemText> 
+            );
+        }
     }
 
     return (
@@ -42,26 +85,8 @@ const NavbarComponent = (props: INavbarProps) => {
                             <Link to='/home' className={classes.link}>Home</Link>
                         </TypoGraphy>
                     </ListItemText>
-                    <ListItemText inset>
-                        <TypoGraphy color="inherit" variant="h6">
-                            <Link to='/login' className={classes.link}>Login</Link>
-                        </TypoGraphy>
-                    </ListItemText>
-                    <ListItemText inset>
-                        <TypoGraphy color="inherit" variant="h6">
-                            <Link to='/admin' className={classes.link}>Admin</Link>
-                        </TypoGraphy>
-                    </ListItemText>
-                    <ListItemText inset>
-                        <TypoGraphy color="inherit" variant="h6">
-                            <Link to='/newreimb' className={classes.link}>Reimbursements</Link>
-                        </TypoGraphy>
-                    </ListItemText>
-                    <ListItemText inset>
-                        <TypoGraphy color = "inherit" variant = "h6">
-                            <Link to = '' onClick = {logout} className = {classes.link}>Logout</Link>
-                        </TypoGraphy>
-                    </ListItemText> 
+                    {checkRole()}
+                    {checkLogin(props.username)}
                     <ListItemText inset>
                         <TypoGraphy color="inherit" variant="h6">
                             {props.username}
