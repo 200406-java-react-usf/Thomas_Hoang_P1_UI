@@ -35,7 +35,7 @@ const NavbarComponent = (props: INavbarProps) => {
     function checkRole(){
         if (!props.authUser){
             return;
-        }else if(props.authUser.role === "Admin"){
+        }else if(props.authUser.role_name === "Admin"){
             return (
             <ListItemText inset>
                 <TypoGraphy color="inherit" variant="h6">
@@ -43,7 +43,7 @@ const NavbarComponent = (props: INavbarProps) => {
                 </TypoGraphy>
             </ListItemText>
             )
-        }else if (props.authUser.role === "FManager" || props.authUser.role === "Employee"){
+        }else if (props.authUser.role_name === "FManager" || props.authUser.role_name === "Employee"){
             return (
             <ListItemText inset>
                 <TypoGraphy color="inherit" variant="h6">

@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 import { Redirect } from 'react-router';
 import { Alert } from '@material-ui/lab';
 import { User } from '../../dtos/user';
+import { NewUser } from '../../dtos/new-user';
 import { Link } from 'react-router-dom';
 import MaterialTable from 'material-table';
 import { getUsers, updateUser, deleteUserById, register} from '../../remote/user-service';
@@ -38,38 +39,29 @@ const MainUserComponent = (props: IMainUserProps) => {
         getTableData();
     });
 
-    const updateUser = async (updatedUser: User) =>{
+    const updateRow = async (updatedUser: User) =>{
         try{
             if (!updatedUser.password){
                 return <Alert severity="error">Please Enter a Password.</Alert>;
         }
             await updateUser(updatedUser);
-        }
-        catch(e){
+        }catch(e){
             setErrorMessage(e.response.data.reason)
         }
     }
 
-    const deleteUser = async (id: number) =>{
+    const deleteRow = async (id: number) =>{
         try{
-            if (!updatedUser.password){
-                return <Alert severity="error">Please Enter a Password.</Alert>;
-        }
-            await deleteUserById(updatedUser);
-        }
-        catch(e){
+            await deleteUserById(id);
+        }catch(e){
             setErrorMessage(e.response.data.reason)
         }
     }
 
-    const addNewUser = async (updatedUser: User) =>{
+    const addNew = async (updatedUser: NewUser) =>{
         try{
-            if (!updatedUser.password){
-                return <Alert severity="error">Please Enter a Password.</Alert>;
-        }
             await register(updatedUser);
-        }
-        catch(e){
+        }catch(e){
             setErrorMessage(e.response.data.reason)
         }
     }
@@ -91,23 +83,24 @@ const MainUserComponent = (props: IMainUserProps) => {
             title = "ERS Users"
             editable= {{
                onRowAdd: newData =>
-               new Promise ((resolve,reject) => {
+               new Promise((resolve,reject) => {
+                   addNew(newData);
                    resolve();
-
-    //            })
-    //         })
-    //         onRowUpdate:
-            
-    //     })
-    //     onRowDelete:
-    // })
-    //         }}
-    //         />
-    //     )
-    // }
-
+               }),
+                onRowUpdate: (newData, oldData) =>
+                new Promise((resolve,reject) =>{
+                    resolve();
+                    updateRow(newData);
+                }),
+                onRowDelete: oldData =>
+                new Promise((resolve, reject) =>{
+                    deleteRow(oldData.ers_user_id)
+                })
+            }}
+            />
+            }
     return (
-        (props.authUser.role === 'Admin') ? <Redirect to="/home" /> :
+        (props.authUser.role_name === 'FManager') ? <Redirect to="/home" /> :
         <div className = {classes.userTable}>
             {renderTable}
                 {

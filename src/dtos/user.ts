@@ -1,28 +1,28 @@
 export class User {
 
-    id: number;
+    ers_user_id: number;
     username: string;
     password: string;
-    firstName: string;
-    lastName: string;
+    first_name: string;
+    last_name: string;
     email: string;
-    role: string
+    role_name: string
 
     constructor(
-        id: number, 
+        ers_user_id: number, 
         un: string,
         pw: string, 
-        fn: string, 
-        ln: string, 
+        first_name: string, 
+        last_name: string, 
         email: string,
-        role: string) 
+        role_name: string) 
     {
-        this.id = id;
+        this.ers_user_id = ers_user_id;
         this.password = pw;
         this.username = un;
-        this.firstName = fn;
-        this.lastName = ln;
+        this.first_name = first_name;
+        this.last_name = last_name;
         this.email = email;
-        this.role = role;
+        this.role_name = role_name;
     }
 }

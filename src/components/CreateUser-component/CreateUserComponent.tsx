@@ -61,7 +61,7 @@ const CreateUserComponent = (props: ICreateUserProps) => {
     }
 
     return (
-        (props.authUser.role !== "Admin") ? <Redirect to="/home"/> :
+        (props.authUser.role_name !== "Admin") ? <Redirect to="/home"/> :
         <div className={classes.registerContainer}>
             <form className={classes.registerForm}>
                 <Typography align="center" variant="h4">Register for Revaboards!</Typography>
