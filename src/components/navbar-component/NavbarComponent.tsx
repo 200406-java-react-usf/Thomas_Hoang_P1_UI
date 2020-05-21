@@ -9,7 +9,7 @@ import { User } from '../../dtos/user';
 import { invalidateSession } from '../../remote/auth-service'
 
 export interface INavbarProps {
-    authUser: User;
+    authUser: User | undefined;
     username: string;
 }
 
