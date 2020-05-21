@@ -6,7 +6,7 @@ import { authenticate } from '../../remote/auth-service';
 import { User } from '../../dtos/user';
 import { Redirect } from 'react-router';
 
-interface ILoginProps {
+export interface ILoginProps {
     authUser: User;
     errorMessage: string;
     loginAction: (username: string, password: string) => void;

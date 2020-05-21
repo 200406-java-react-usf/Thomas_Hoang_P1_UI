@@ -7,7 +7,7 @@ import { Reimb } from '../../dtos/reimb';
 import MaterialTable from 'material-table';
 import { getAllReimbs, getAllByUserID, updateReimb, CreateReimb, deleteReimbById} from '../../remote/reimb-service';
 
-interface IMainReimbProps {
+export interface IMainReimbProps {
     authUser: User;
     errorMessage: string;
 }

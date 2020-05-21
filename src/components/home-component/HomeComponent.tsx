@@ -1,7 +1,7 @@
 import React from 'react';
 import { Redirect } from 'react-router';
 
-interface IHomeProps {
+export interface IHomeProps {
     username: string;
 }
 

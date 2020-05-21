@@ -6,7 +6,7 @@ import { User } from '../../dtos/user';
 import MaterialTable from 'material-table';
 import { getUsers, updateUser, deleteUserById, register} from '../../remote/user-service';
 
-interface IMainUserProps {
+export interface IMainUserProps {
     authUser: String | undefined;
     errorMessage: string;
 }

@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core';
 import { User } from '../../dtos/user';
 import { invalidateSession } from '../../remote/auth-service'
 
-interface INavbarProps {
+export interface INavbarProps {
     authUser: User;
     username: string;
 }
