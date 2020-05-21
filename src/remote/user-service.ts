@@ -13,9 +13,11 @@ export async function getUsers() {
 }
 
 export async function updateUser(updatedUser: User) {
-    return await P1Client.put('/users', updatedUser);
+    let response = await P1Client.post('/users', updatedUser);
+    return await response.data;
 }
 
 export async function deleteUserById(id: number) {
-    return await P1Client.delete(`/users/${id}`);
+    let response = await P1Client.delete(`/users`, {data: id});
+    return await response.data;
 }

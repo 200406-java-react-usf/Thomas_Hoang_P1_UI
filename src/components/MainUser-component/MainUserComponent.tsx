@@ -32,17 +32,10 @@ const MainUserComponent = (props: IMainUserProps) => {
         setTableData(result);
     }
 
-    useEffect(() => {
-        getTableData();
-    }, []);
-
     const updateRow = async (updatedUser: User) =>{
         try{
-            if (!updatedUser.password){
-                return <Alert severity="error">Please Enter a Password.</Alert>;
-        }
             await updateUser(updatedUser);
-            await getTableData();
+            getTableData();
         }catch(e){
             setErrorMessage(e.response.data.reason)
         }
@@ -51,20 +44,24 @@ const MainUserComponent = (props: IMainUserProps) => {
     const deleteRow = async (id: number) =>{
         try{
             await deleteUserById(id);
-            await getTableData();
+            getTableData();
         }catch(e){
             setErrorMessage(e.response.data.reason)
         }
     }
 
-    const addNew = async (updatedUser: User) =>{
+    const addNew = async (newUser: User) =>{
         try{
-            await register(updatedUser);
-            await getTableData();
+            await register(newUser);
+            getTableData();
         }catch(e){
             setErrorMessage(e.response.data.reason)
         }
     }
+
+    useEffect(() => {
+        getTableData();
+    }, []);
 
     return (
         !props.authUser ? <Redirect to="/home" /> :
