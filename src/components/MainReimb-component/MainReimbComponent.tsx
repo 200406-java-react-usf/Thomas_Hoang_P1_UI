@@ -1,80 +1,122 @@
-import React, { useState } from 'react';
-import { Typography, FormControl, InputLabel, Input, Button, makeStyles } from '@material-ui/core';
+import React, { useState, useEffect } from 'react';
+import { makeStyles } from '@material-ui/core';
 import { Redirect } from 'react-router';
 import { Alert } from '@material-ui/lab';
-import { NewReimb } from '../../dtos/new-reimb';
 import { User } from '../../dtos/user';
 import { Reimb } from '../../dtos/reimb';
-import { Link } from 'react-router-dom';
-import { getAllReimbs } from '../../remote/reimb-service';
+import MaterialTable from 'material-table';
+import { getAllReimbs, getAllByUserID, updateReimb, CreateReimb, deleteReimbById} from '../../remote/reimb-service';
 
-interface IReimbProps {
+interface IMainReimbProps {
     authUser: User;
     errorMessage: string;
-    // reimbs: Reimb;
 }
 
 const useStyles = makeStyles({
-    reimbContainer: {
+    userTable: {
         display: "flex",
         justifyContent: "center",
         margin: 20,
         marginTop: 40,
         padding: 20
     },
-    reimbForm: {
-        width: "50%"
-    }
 });
 
-const MainReimbComponent = (props: IReimbProps) => {
+const MainReimbComponent = (props: IMainReimbProps) => {
 
     const classes = useStyles();
+    const [reimbs, setTableData] = useState([new Reimb(0, 0, '', '', '', '', '', '', '', '', '', '')]);
+    const [errorMessage, setErrorMessage] = useState('');
 
-    // let renderRows = (e: any) => {
-    //     return (
-    //         /*May need to make workarounds on API so that I can translate 
-    //         the state and obtain first name and last names.*/
-    //         <tr>
-    //             <th>{props.reimbs.reimb_id}</th>
-    //             <th>{props.reimbs.amount}</th>
-    //             <th>{props.reimbs.submitted}</th>
-    //             <th>{props.reimbs.resolved}</th>
-    //             <th>{props.reimbs.description}</th>
-    //             <th>{props.reimbs.receipt}</th>
-    //             <th>{props.reimbs.author_first} + " " + {props.reimbs.author_last}</th>
-    //             <th>{props.reimbs.resolver_first} + " " + {props.reimbs.resolver_last}</th>
-    //             <th>{props.reimbs.reimb_status}</th>
-    //             <th>{props.reimbs.reimb_type}</th>
-    //             <th><button className="editbtn">Edit</button></th>
-    //         </tr>
-    //     )
-    //     }
+    /*Gets all reimbursements if the user is a Financial Manager
+    else if they are an Employee 
+    it grabs only the reimbursements for that Employee.*/
+    let getTableData = async() =>{
+        try{
+            //@ts-ignore
+            if (props.authUser?.role === 'FManager'){
+                let result = await getAllReimbs();
+                setTableData(result);
+            }else if (props.authUser?.role === 'Employee'){
+                //@ts-ignore
+                let result = await getAllByUserID(props.authUser?.id);
+                setTableData(result);
+            }
+
+        }catch(e){
+            setErrorMessage(e.response.data.reason)
+    }
+    }
+    
+
+    const updateRow = async (updatedReimb: Reimb) =>{
+        try{
+            await updateReimb(updatedReimb);
+            getTableData();
+        }catch(e){
+            setErrorMessage(e.response.data.reason)
+        }
+    }
+
+    const deleteRow = async (id: number) =>{
+        try{
+            await deleteReimbById(id);
+            getTableData();
+        }catch(e){
+            setErrorMessage(e.response.data.reason)
+        }
+    }
+
+    const addNew = async (newReimb: Reimb) =>{
+        try{
+            await CreateReimb(newReimb);
+            getTableData();
+        }catch(e){
+            setErrorMessage(e.response.data.reason)
+        }
+    }
+
+    useEffect(() => {
+        getTableData();
+    }, []);
 
     return (
         !props.authUser ? <Redirect to="/home" /> :
-        <div className={classes.reimbContainer}>
-            <table>
-            <thead>
-                <td>Reimbursement ID</td>
-                <td>Amount</td>
-                <td>Submitted Time</td>
-                <td>Resolved Time</td>
-                <td>Description</td>
-                <td>Receipt</td>
-                <td>Author</td>
-                <td>Resolver</td>
-                <td>Reimbursement Status</td>
-                <td>Reimbursement Type</td>
-                <td></td>
-            </thead>
-            {/* <tbody>
-                {renderRows}
-            </tbody> */}
-            </table>
-            <button>
-                <Link to = '/createReimb'>Create Reimbursement</Link>
-            </button>
+        <div className = {classes.userTable}>
+            <MaterialTable
+            columns = {[
+                {title: 'Reimbursement ID', field: 'reimb_id', editable: 'never'},
+                {title: 'Amount', field: 'amount'},
+                {title: 'Submitted Time', field: 'submitted', editable: 'never'},
+                {title: 'Resolved Time', field: 'resolved', editable: 'never'},
+                {title: 'Description', field: 'description'},
+                {title: 'Receipt', field: 'receipt'},
+                {title: 'Author First', field: 'author_first', editable: 'onAdd'},
+                {title: 'Author Last', field: 'author_last', editable: 'onAdd'},
+                {title: 'Resolver First', field: 'resolver_first'},
+                {title: 'Resolver Last', field: 'resolver_last'},
+                {title: 'Reimbursement Status', field: 'reimb_status', editable: "onUpdate"},
+                {title: 'Reimbursement Type', field: 'reimb_type'}
+            ]}
+            data = {reimbs}
+            title = "ERS Reimbursements"
+            editable= {{
+               onRowAdd: newData =>
+               new Promise((resolve,reject) => {
+                   addNew(newData);
+                   resolve();
+               }),
+                onRowUpdate: (newData, oldData) =>
+                new Promise((resolve,reject) =>{
+                    resolve();
+                    updateRow(newData);
+                }),
+                onRowDelete: oldData =>
+                new Promise((resolve, reject) =>{
+                    deleteRow(oldData.reimb_id)
+                })
+            }}
+            />
                 {
                     props.errorMessage 
                         ? 

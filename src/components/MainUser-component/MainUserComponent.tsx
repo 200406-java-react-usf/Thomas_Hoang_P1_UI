@@ -7,7 +7,7 @@ import MaterialTable from 'material-table';
 import { getUsers, updateUser, deleteUserById, register} from '../../remote/user-service';
 
 interface IMainUserProps {
-    authUser: User;
+    authUser: String | undefined;
     errorMessage: string;
 }
 

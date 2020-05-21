@@ -47,7 +47,7 @@ const NavbarComponent = (props: INavbarProps) => {
             return (
             <ListItemText inset>
                 <TypoGraphy color="inherit" variant="h6">
-                    <Link to='/reimb' className={classes.link}>Reimbursements</Link>
+                    <Link to='/reimbs' className={classes.link}>Reimbursements</Link>
                 </TypoGraphy>
             </ListItemText>
             )
@@ -79,7 +79,7 @@ const NavbarComponent = (props: INavbarProps) => {
         <div>
             <List component="nav">
                 <ListItem component="div" >
-                    <TypoGraphy color="inherit" variant="h5">Thomas Hoang</TypoGraphy>
+                    <TypoGraphy color="inherit" variant="h5">ERS</TypoGraphy>
                     <ListItemText inset>
                         <TypoGraphy color="inherit" variant="h6">
                             <Link to='/home' className={classes.link}>Home</Link>

@@ -33,7 +33,7 @@ function App() {
             <Route path='/login' render={() => <LoginComponent />} />
             <Route path='/users' render={() => <MainUserComponent />} />
             <Route path='/register' render={() => <CreateUserComponent />} />
-            <Route path='/reimb' render={() => <MainReimbComponent />} />
+            <Route path='/reimbs' render={() => <MainReimbComponent />} />
             <Route path='/createReimb' render={() => <CreateReimbComponent />} />
           </Switch>
         </Router>
