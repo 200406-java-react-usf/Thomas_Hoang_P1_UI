@@ -34,6 +34,9 @@ const MainUserComponent = (props: IMainUserProps) => {
 
     const updateRow = async (updatedUser: User) =>{
         try{
+            if (!updatedUser.password){
+                updatedUser.password = '';
+            }
             await updateUser(updatedUser);
             getTableData();
         }catch(e){
