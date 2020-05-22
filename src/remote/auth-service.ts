@@ -7,6 +7,6 @@ export async function authenticate(username: string, password: string): Promise<
 }
 
 export async function invalidateSession() {
-    let response = await P1Client.post('/auth', {username, password});
-    return await P1Client.get('/auth');
+    let response = await P1Client.get('/auth');
+    return await response.data;
 }

@@ -11,6 +11,7 @@ import { invalidateSession } from '../../remote/auth-service'
 export interface INavbarProps {
     authUser: User | undefined;
     username: string;
+    logoutAction: () => void;
 }
 
 const useStyles = makeStyles({
@@ -25,10 +26,8 @@ const NavbarComponent = (props: INavbarProps) => {
     const classes = useStyles();
 
     async function logout(){
-
-        // await invalidateSession;
-
-        //Need to make a logout action and reducer.
+        props.logoutAction();
+        localStorage.clear();
     }
 
     function checkRole(){

@@ -1,6 +1,7 @@
 import { IState } from "../../reducers";
 import NavbarComponent from "./NavbarComponent";
 import { connect } from "react-redux";
+import { logoutAction } from '../../actions/logout-action';
 
 const mapStateToProps = (state: IState) => {
     return {
@@ -10,7 +11,7 @@ const mapStateToProps = (state: IState) => {
 }
 
 const mapDispatchToProps = {
-    
+    logoutAction
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(NavbarComponent);
