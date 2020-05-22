@@ -109,10 +109,12 @@ const MainReimbComponent = (props: IMainReimbProps) => {
                 onRowUpdate: (newData, oldData) =>
                 new Promise((resolve,reject) =>{
                     resolve();
+                    newData.resolved = ' ';
                     updateRow(newData);
                 }),
                 onRowDelete: oldData =>
                 new Promise((resolve, reject) =>{
+                    console.log(oldData.reimb_id)
                     deleteRow(oldData.reimb_id)
                 })
             }}

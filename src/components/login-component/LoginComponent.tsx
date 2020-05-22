@@ -7,7 +7,7 @@ import { User } from '../../dtos/user';
 import { Redirect } from 'react-router';
 
 export interface ILoginProps {
-    authUser: User;
+    authUser: User | undefined;
     errorMessage: string;
     loginAction: (username: string, password: string) => void;
 }

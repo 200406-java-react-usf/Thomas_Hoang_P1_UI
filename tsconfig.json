@@ -21,6 +21,6 @@
     "jsx": "react"
   },
   "include": [
-    "src"
+    "src", "LoginComponent.spec.tsx"
   ]
 }
